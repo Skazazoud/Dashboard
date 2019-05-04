@@ -6,14 +6,14 @@ module.exports = function(app, passport) {
     XMLHttpRequest = require('xmlhttprequest');
     Twit = require('twit');
     date = require('date-and-time');
-    var usr = "Skaazed"
+    var usr = ""
     var y = "153"
 
     var T = new Twit({
-        consumer_key:         'BalQXpEwZ3hNcZiCCkJ7LBm9c',
-        consumer_secret:      'bsXBPBZ29X8Zcdk4rtt6J3Jg7tHBCRbtcksXhLSuv70Fp5VxW2',
-        access_token:         '1113094154643533824-V0HS0zVeEhaThAUE2vmau4TuKdkeQC',
-        access_token_secret:  'bHO4zR5tLGQ8lsNmMmtfbnTtW9ZL5hiM8eIAMxfmZGmFD',
+        consumer_key:         '',
+        consumer_secret:      '',
+        access_token:         '',
+        access_token_secret:  '',
       })
 
     app.get('/about.json', function(req, res) {
