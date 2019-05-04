@@ -1,0 +1,20 @@
+version: '3.3'
+
+services:
+
+  dashboard:
+      depends_on:
+        - mongo
+      build: ./
+      container_name: dashboard_1
+      command: npm start
+      ports:
+        - "8080:8080"
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - data-volume:/data/db
+volumes:
+  data-volume:

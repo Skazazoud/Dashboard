@@ -1,0 +1,220 @@
+<!doctype html>
+
+
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <div class="well2 well well-sm">
+        <a href="/services" class="button2 btn btn-warning btn-lg">Services</a>
+        <a href="/widgets" class="button2 btn btn-warning btn-lg">Widgets</a>
+        <a href="/unlink" class="button2 btn btn-warning btn-lg">Unlink</a>
+        <a href="/logout" style="float: right;" class="button3 btn btn-warning btn-lg">Logout</a>
+    </div>
+</head>
+
+<body>
+	<center>
+		<h1><u>Welcome to your Dashboard !</u></h1>
+    	</center>
+	<br>
+    <center>
+        <h3>Profile information</h3>
+            <p>
+                <strong>id</strong>: <%= user._id %><br>
+                <strong>email</strong>: <%= user.local.email %><br>
+                <strong>password</strong>: <%= user.local.password %><br>
+	    </p>
+	<% if(user.meteo.widget)  {%>
+		<h4><u>Weather widget(s)</u></h4>
+		<div class="well3 well">
+		<% if(user.meteo.cities.lyon) { %>
+			<strong>Temperature in Lyon is </strong>: <%= user.meteo.weather.temperatureLyon %> °C<br>
+			<strong>The sky is :</strong> <%= user.meteo.weather.skyLyon %><br>
+		<% } %>
+		<% if(user.meteo.cities.paris) { %>
+			<strong>Temperature in Paris is</strong>: <%= user.meteo.weather.temperatureParis %> °C<br>
+			<strong>The sky is :</strong> <%= user.meteo.weather.skyParis %><br>
+		<% } %>
+		<% if(user.meteo.cities.bordeaux) { %>
+			<strong>Temperature in Bordeaux is</strong>: <%= user.meteo.weather.temperatureBordeaux %> °C<br>
+			<strong>The sky is :</strong> <%= user.meteo.weather.skyBordeaux %><br>
+		<% } %>
+		<% if(user.meteo.cities.marseille) { %>
+			<strong>Temperature in Marseille is</strong>: <%= user.meteo.weather.temperatureMarseille %> °C<br>
+			<strong>The sky is :</strong> <%= user.meteo.weather.skyMarseille %><br>
+		<% } %>
+		</div>
+	<% } %>
+	<% if(user.steam.widget)  {%>
+		<h4><u>Steam widget(s)</u></h4>
+		<div class="well3 well">
+			<% if(user.steam.actions.games) { %>
+				<strong>Number of steam games :</strong> 152<br>
+			<% } %>
+			<% if (user.steam.actions.friends) { %>
+				<strong>Number of friends on steam :</strong> 77 <br>
+			<% } %>
+		</div>
+	<% } %>
+	<% if(user.twitter.widget)  {%>
+		<h4><u>Twitter widget(s)</u></h4>
+		<div class="well3 well">
+			<% if(user.twitter.actions.followers) { %>
+				<strong>Number of people following "Skaazed" :</strong> <%= user.twitter.data.followers %><br>
+			<% } %>
+			<% if(user.twitter.actions.following) { %>
+				<strong>Number of people followed by "Skaazed": </strong> <%= user.twitter.data.following %><br>
+			<% } %>
+		</div>
+	<% } %>
+	<% if(user.timer.widget)  {%>
+		<h4><u>Time Zone widget(s)</u></h4>
+		<div class="well3 well">
+			<% if(user.timer.activeW.france) { %>
+				<strong>The date and time in France is :</strong> <%= user.timer.time.france %><br>
+			<% } %>
+			<% if(user.timer.activeW.uk) { %>
+				<strong>The date and time in the UK is :</strong> <%= user.timer.time.uk %><br>
+			<% } %>
+			<% if(user.timer.activeW.russia) { %>
+				<strong>The date and time in Los Angeles, USA is :</strong> <%= user.timer.time.usa %><br>
+			<% } %>
+			<% if(user.timer.activeW.japan) { %>
+				<strong>The date and time in Japan is :</strong> <%= user.timer.time.japan %><br>
+			<% } %>
+		</div>
+	<% } %>
+    </center>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+</body>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+	/* Center the loader */
+	#loader {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		z-index: 1;
+		width: 150px;
+		height: 150px;
+		margin: -75px 0 0 -75px;
+		border: 16px solid #f3f3f3;
+		border-radius: 50%;
+		border-top: 16px solid #3498db;
+		width: 120px;
+		height: 120px;
+		-webkit-animation: spin 1s linear infinite;
+		animation: spin 1s linear infinite;
+	}
+
+	@-webkit-keyframes spin {
+		0% {
+			-webkit-transform: rotate(0deg);
+		}
+
+		100% {
+			-webkit-transform: rotate(360deg);
+		}
+	}
+
+	@keyframes spin {
+		0% {
+			transform: rotate(0deg);
+		}
+
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+
+	/* Add animation to "page content" */
+	.animate-bottom {
+		position: relative;
+		-webkit-animation-name: animatebottom;
+		-webkit-animation-duration: 0.5s;
+		animation-name: animatebottom;
+		animation-duration: 0.5s
+	}
+
+	@-webkit-keyframes animatebottom {
+		from {
+			bottom: -100px;
+			opacity: 0
+		}
+
+		to {
+			bottom: 0px;
+			opacity: 1
+		}
+	}
+
+	@keyframes animatebottom {
+		from {
+			bottom: -100px;
+			opacity: 0
+		}
+
+		to {
+			bottom: 0;
+			opacity: 1
+		}
+	}
+
+	#myDiv {
+		display: none;
+		text-align: center;
+	}
+	.button2 {
+  		background-color: rgb(29, 67, 122);
+  		border: rgb(29, 67, 122);
+  		color: white;
+  		text-align: center;
+	}
+	.button2:hover {
+  		background-color: rgb(0, 4, 255);
+  		border: rgb(29, 67, 122);
+  		color: white;
+  		text-align: center;
+	}
+	.button3 {
+		background-color: rgb(252, 15, 19);
+		border: rgb(252, 15, 19);
+		color: white;
+		text-align: center;
+	}.button3:hover {
+  		background-color: rgb(192, 0, 0);
+  		border: rgb(192, 0, 0);
+  		color: white;
+  		text-align: center;
+	}body{
+		background-color: #B6B6B6;
+	}.well2 {
+		background: #9A9A9A;
+	}.well3 {
+		background: #C3C3C3;
+	}
+</style>
+
+<body onload="myFunction()" style="margin:0;">
+	<div id="loader"></div>
+	<script>
+		var myVar;
+
+		function myFunction() {
+			myVar = setTimeout(showPage, 1000);
+		}
+
+		function showPage() {
+			document.getElementById("loader").style.display = "none";
+			document.getElementById("myDiv").style.display = "block";
+		}
+	</script>

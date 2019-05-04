@@ -1,0 +1,299 @@
+<!doctype html>
+
+
+<head>
+    <title>Widgets</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <div class="well2 well well-sm">
+	<a href="/accueil" class="button2 btn btn-warning btn-lg">Accueil</a>
+	<a href="/services" class="button2 btn btn-warning btn-lg">Services</a>
+	<a href="/unlink" class="button2 btn btn-warning btn-lg">Unlink</a>
+	<a href="/logout" style="float: right;" class="button3 btn btn-warning btn-lg">Logout</a>
+    </div>
+</head>
+
+<body>
+	<center>
+		<h1><u>Add or remove widgets</u></h1>
+	</center>
+	<br>
+	<br>
+	<center>
+	<% if (user.twitter.connected && !user.twitter.widget) { %>
+		<h3><u>Select a widget you want to add for Twitter</u></h3>
+		<div class="container">
+			<form action="/widgets/twitter" method="post">
+			<select name="widget" label="widget">					
+				<option value="1">View number of followers</option>
+				<option value="2">View number of people you follow</option>
+			</select>
+			<br>
+			<br>
+			<button type="submit" class="button2 btn btn-warning btn-lg">Add twitter widget to the homepage</button>
+			</form>
+		</div>
+	<% }%>
+	<% if (user.twitter.connected && user.twitter.widget) { %>
+		<h3><u>You currently have an active twitter widget</u></h3>
+		<a href="/widgets/twitter/remove" class="button2 btn btn-warning btn-lg">Remove the active widget</a>
+	<% }%>
+	<% if (!user.twitter.connected) { %>
+		<h3>Twitter account not linked</h3>
+	<% }%>
+	<br>
+	<br>
+	<% if (user.steam.connected && !user.steam.widget) { %>
+		<h3><u>Select a widget you want to add for Steam</u></h3>
+		<div class="container">
+			<form action="/widgets/steam" method="post">
+				<select name="widget" label="widget">
+					<option value="1">View number of games on you account</option>
+					<option value="2">View number of friends</option>
+				</select>
+				<br>
+				<br>
+				<button type="submit" class="button2 btn btn-warning btn-lg">Add steam widget to the homepage</button>
+			</form>
+		</div>
+	<% }%>
+	<% if (user.steam.connected && user.steam.widget) { %>
+		<h3><u>You currently have an active steam widget</u></h3>
+		<a href="/widgets/steam/remove" class="button2 btn btn-warning btn-lg">Remove the widget</a>
+	<% }%>
+	<% if (!user.steam.connected) { %>
+		<h3>Steam account not linked</h3>
+	<% }%>
+	<br>
+	<br>
+	<% if (user.meteo.active && !user.meteo.widget) { %>
+		<h3><u>Select city for Weather widget</u></h3>
+		<div class="container">
+			<form action="/widgets/meteo" method="post">
+				<select name="city">
+					<option value="1">Paris</option>
+					<option value="2">Lyon</option>
+					<option value="3">Bordeaux</option>
+					<option value="4">Marseille</option>
+				</select>
+				<br>
+				<br>
+				<button type="submit" class="button2 btn btn-warning btn-lg">Add weather widget to the homepage</button>
+			</form>
+		</div>
+	<% }%>
+	<% if (user.meteo.active && user.meteo.widget) { %>
+		<% if (user.meteo.cities.paris && user.meteo.cities.lyon && user.meteo.cities.bordeaux && user.meteo.cities.marseille) { %>
+			<h3><u>You currently have an active weather widget.</u></h3>
+		<% } %>
+		<% if (!user.meteo.cities.paris || !user.meteo.cities.lyon || !user.meteo.cities.bordeaux || !user.meteo.cities.marseille) { %>
+		<h3><u>You currently have an active weather widget. Add another city ?</u></h3>
+		<div class="container">
+				<form action="/widgets/meteo" method="post">
+					<select name="city">
+						<% if (!user.meteo.cities.paris) { %>
+							<option value="1">Paris</option>
+						<% } %>
+						<% if (!user.meteo.cities.lyon) { %>
+							<option value="2">Lyon</option>
+						<% } %>
+						<% if (!user.meteo.cities.bordeaux) { %>
+							<option value="3">Bordeaux</option>
+						<% } %>
+						<% if (!user.meteo.cities.marseille) { %>
+							<option value="4">Marseille</option>
+						<% } %>
+					</select>
+					<br>
+					<button type="submit" class="button2 btn btn-warning btn-lg">Add weather widget to the homepage</button>
+				</form>
+			</div>
+			<br>
+			<br>
+		<% }%>
+		<a href="/widgets/meteo/remove" class="button2 btn btn-warning btn-lg">Remove the widget</a>
+	<% }%>
+	<% if (!user.meteo.active) { %>
+		<h3>Weather service not active</h3>
+	<% }%>
+	<br>
+	<br>
+	<% if (user.timer.active && !user.timer.widget) { %>
+		<h3><u>Select country for Time zone widget</u></h3>
+		<div class="container">
+			<form action="/widgets/timer" method="post">
+				<select name="zone">
+					<option value="1">France</option>
+					<option value="2">United Kingdom</option>
+					<option value="3">Los Angeles, USA</option>
+					<option value="4">Japan</option>
+				</select>
+				<br>
+				<br>
+				<button type="submit" class="button2 btn btn-warning btn-lg">Add time widget to the homepage</button>
+			</form>
+		</div>
+	<% }%>
+	<% if (user.timer.active && user.timer.widget) { %>
+		<% if (user.timer.activeW.france && user.timer.activeW.uk && user.timer.activeW.russia && user.timer.activeW.japan) { %>
+			<h3><u>You currently have an active time zone widget.</u></h3>
+		<% } %>
+		<% if (!user.timer.activeW.france || !user.timer.activeW.uk || !user.timer.activeW.russia || !user.timer.activeW.japan) { %>
+			<h3><u>You currently have an active time zone widget. Add another country ?</u></h3>
+			<div class="container">
+					<form action="/widgets/timer" method="post">
+						<select name="zone">
+							<% if (!user.timer.activeW.france) { %>
+								<option value="1">France</option>
+							<% } %>
+							<% if (!user.timer.activeW.uk) { %>
+								<option value="2">United Kingdom</option>
+							<% } %>
+							<% if (!user.timer.activeW.russia) { %>
+								<option value="3">Los Angeles, USA</option>
+							<% } %>
+							<% if (!user.timer.activeW.japan) { %>
+								<option value="4">Japan</option>
+							<% } %>
+						</select>
+						<br>
+						<button type="submit" class="button2 btn btn-warning btn-lg">Add time zone widget to the homepage</button>
+					</form>
+				</div>
+				<br>
+				<br>
+			<% }%>
+		<a href="/widgets/timer/remove" class="button2 btn btn-warning btn-lg">Remove the widget</a>
+	<% }%>
+	<% if (!user.timer.active) { %>
+		<h3>Time service not active</h3>
+	<% }%>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+</center>
+</body>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+	/* Center the loader */
+	#loader {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		z-index: 1;
+		width: 150px;
+		height: 150px;
+		margin: -75px 0 0 -75px;
+		border: 16px solid #f3f3f3;
+		border-radius: 50%;
+		border-top: 16px solid #3498db;
+		width: 120px;
+		height: 120px;
+		-webkit-animation: spin 1s linear infinite;
+		animation: spin 1s linear infinite;
+	}
+
+	@-webkit-keyframes spin {
+		0% {
+			-webkit-transform: rotate(0deg);
+		}
+
+		100% {
+			-webkit-transform: rotate(360deg);
+		}
+	}
+
+	@keyframes spin {
+		0% {
+			transform: rotate(0deg);
+		}
+
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+
+	/* Add animation to "page content" */
+	.animate-bottom {
+		position: relative;
+		-webkit-animation-name: animatebottom;
+		-webkit-animation-duration: 0.5s;
+		animation-name: animatebottom;
+		animation-duration: 0.5s
+	}
+
+	@-webkit-keyframes animatebottom {
+		from {
+			bottom: -100px;
+			opacity: 0
+		}
+
+		to {
+			bottom: 0px;
+			opacity: 1
+		}
+	}
+
+	@keyframes animatebottom {
+		from {
+			bottom: -100px;
+			opacity: 0
+		}
+
+		to {
+			bottom: 0;
+			opacity: 1
+		}
+	}
+
+	#myDiv {
+		display: none;
+		text-align: center;
+	}
+	.button2 {
+  		background-color: rgb(29, 67, 122);
+  		border: rgb(29, 67, 122);
+  		color: white;
+  		text-align: center;
+	}
+	.button2:hover {
+  		background-color: rgb(0, 4, 255);
+  		border: rgb(29, 67, 122);
+  		color: white;
+  		text-align: center;
+	}
+	.button3 {
+		background-color: rgb(252, 15, 19);
+		border: rgb(252, 15, 19);
+		color: white;
+		text-align: center;
+	}.button3:hover {
+  		background-color: rgb(192, 0, 0);
+  		border: rgb(192, 0, 0);
+  		color: white;
+  		text-align: center;
+	}body{
+		background-color: #B6B6B6;
+	}.well2 {
+		background: #9A9A9A;
+	}
+</style>
+
+<body onload="myFunction()" style="margin:0;">
+	<div id="loader"></div>
+	<script>
+		var myVar;
+
+		function myFunction() {
+			myVar = setTimeout(showPage, 1000);
+		}
+
+		function showPage() {
+			document.getElementById("loader").style.display = "none";
+			document.getElementById("myDiv").style.display = "block";
+		}
+	</script>

@@ -1,0 +1,25 @@
+{
+	"client": {
+	    "host": "10.101.53.35"
+	 },
+	"server": {
+	    "current_time": 1531680780,
+	    "services": [{
+		"name": "twitter",
+		"actions": [{
+		    "name": "twitter_followed",
+		    "description": "The user has subscribed to the desired user"
+		 }, {
+		    "name": "tweet_posted",
+		    "description": "A new tweet has been posted by the user on it's wall."
+		 }],
+		"reactions": [{
+		    "name": "share_to_twitter",
+		    "description": "The user shares the desired content on Twitter"
+		 }, {
+		     "name": "follow_on_twitter",
+		     "description": "The user is subscribed to the desired user"
+		 }]
+	     }]
+	 }
+     }
