@@ -20,7 +20,7 @@
 		"passport": "~0.4.0",
 		"passport-local": "~1.0.0",
 		"passport-twitter": "~1.0.4",
-		"jsonwebtoken": "~8.5.0",
+		"jsonwebtoken": "~9.0.0",
 		"twit": "~2.2.11",
 		"twitter-webhooks": "~0.3.0",
 		"weather-js": "2.0.0",
